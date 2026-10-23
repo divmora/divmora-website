@@ -11,6 +11,7 @@ jobs:
     uses: divmora/.github/.github/workflows/node-ci.yml@main
     with:
       package-manager: 'pnpm'
+      pnpm-version: '9'
       node-version: '22'
       test-command: 'pnpm typecheck'
       build-command: 'pnpm build'
