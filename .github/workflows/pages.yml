@@ -12,5 +12,4 @@ jobs:
       artifact-path: './dist'
       build-command: 'pnpm run build'
       package-manager: 'pnpm'
-      pnpm-version: '9'
       node-version: '22'
