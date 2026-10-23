@@ -1,0 +1,295 @@
+[
+  {
+    "id": "gitlab-fleet-governor",
+    "name": "GitLab Fleet Governor",
+    "repoName": "gitlab-fleet-governor",
+    "tagline": "Declarative Policy-as-Code & Fleet Governance Automation Engine",
+    "description": "Production-grade governance engine written in Go that treats GitLab organization governance as version-controlled code. Features 10 reconcilers for push rules, protected branches, approval matrices, pipeline retention, and compliance frameworks across enterprise fleets.",
+    "category": "governance",
+    "categoryLabel": "Governance & Policy",
+    "language": "Go",
+    "license": "BSL-1.1",
+    "githubUrl": "https://github.com/divmora/gitlab-fleet-governor",
+    "liveUrl": "https://divmora.github.io/gitlab-fleet-governor/",
+    "stars": 22,
+    "forks": 4,
+    "badge": "Flagship Platform",
+    "status": "core",
+    "metrics": [
+      { "label": "Reconcilers", "value": "10 Subsystems" },
+      { "label": "Discovery", "value": "Recursive BFS" },
+      { "label": "Runtime", "value": "CLI & AWS Lambda" }
+    ],
+    "features": [
+      "Declarative YAML/JSON policy-as-code with environment variable substitution",
+      "Recursive Breadth-First Search (BFS) group hierarchy traversal and project filtering",
+      "Dry-run simulation mode computing exact attribute-level drift before mutation",
+      "Dual runtime: standalone CLI, Docker container, CI/CD pipeline, or AWS Lambda",
+      "Interactive Live Studio for visual policy validation and YAML generation"
+    ],
+    "cliCommand": "gitlab-fleet-governor run -c policies/enterprise.yaml --dry-run",
+    "architectureDetails": "Bounded worker pool, token-bucket rate limiter, keyset streaming pagination, and native EventBridge/S3 Lambda triggers."
+  },
+  {
+    "id": "owlflow",
+    "name": "OwlFlow",
+    "repoName": "owlflow",
+    "tagline": "Event-Driven Workflow Automation Engine & Visual DAG Studio",
+    "description": "A lightweight, high-performance workflow automation engine written in Go. Features event-driven webhooks, cron scheduling, and an interactive DAG studio for orchestrating complex developer and cloud automation tasks.",
+    "category": "developer-tools",
+    "categoryLabel": "Workflow & Automation",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/owlflow",
+    "stars": 24,
+    "forks": 5,
+    "badge": "Core Engine",
+    "status": "core",
+    "metrics": [
+      { "label": "Engine", "value": "Go Binary" },
+      { "label": "Pipeline", "value": "Visual DAG" },
+      { "label": "Triggers", "value": "Webhook / Cron" }
+    ],
+    "features": [
+      "Lightweight, compiled Go binary with sub-millisecond execution overhead",
+      "Interactive visual DAG studio for declarative workflow composition",
+      "Event-driven webhook listeners and high-precision cron schedulers",
+      "Resilient step retry policies and distributed state persistence"
+    ],
+    "cliCommand": "owlflow start --config=./workflows.yaml",
+    "architectureDetails": "Engineered in Go with concurrent worker pools, zero-alloc state machines, and embedded SQLite/DuckDB workflow execution logs."
+  },
+  {
+    "id": "otel-aws-log-processor",
+    "name": "OTel AWS Log Processor",
+    "repoName": "otel-aws-log-processor",
+    "tagline": "High-Throughput OpenTelemetry Access Log Processor for AWS Services",
+    "description": "A high-performance Go-based AWS Lambda tool and stream processor that converts AWS access logs (ALB, NLB, WAF, CloudFront, and VPC Flow) into standardized OpenTelemetry (OTLP) records at line rate.",
+    "category": "observability",
+    "categoryLabel": "Observability & Telemetry",
+    "language": "Go",
+    "license": "BSL-1.1",
+    "githubUrl": "https://github.com/divmora/otel-aws-log-processor",
+    "stars": 19,
+    "forks": 3,
+    "badge": "Telemetry",
+    "status": "active",
+    "metrics": [
+      { "label": "Throughput", "value": ">500 MB/s" },
+      { "label": "Schema", "value": "OTel OTLP" },
+      { "label": "Runtime", "value": "Lambda / Go" }
+    ],
+    "features": [
+      "Zero-allocation SIMD string parsing for ALB, NLB, WAF, and CloudFront logs",
+      "Direct conversion to OpenTelemetry Proto (OTLP) schemas",
+      "Deployable as high-scale S3/EventBridge triggered AWS Lambda",
+      "Streaming gzip decompression with minimal heap pressure"
+    ],
+    "cliCommand": "otel-aws-log-processor --bucket=aws-logs --format=otlp",
+    "architectureDetails": "Go binary leveraging reusable buffer pools and optimized string scanners to parse logs with microsecond execution times."
+  },
+  {
+    "id": "jules-ai-agent",
+    "name": "Jules AI Agents",
+    "repoName": "jules-ai-agent",
+    "tagline": "Specialized Autonomous Code Review & Refactoring Agent Swarm",
+    "description": "Suite of specialized Go agents powered by LocalHarness. Features Bolt (Performance optimization), Palette (Design & UX), and Sentinel (Security auditing) to autonomously analyze codebases, implement fixes on descriptive branches, and prepare pull requests.",
+    "category": "ai-agents",
+    "categoryLabel": "AI & Autonomous Agents",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/jules-ai-agent",
+    "stars": 28,
+    "forks": 6,
+    "badge": "Specialized Agents",
+    "status": "core",
+    "metrics": [
+      { "label": "Agents", "value": "Bolt, Palette, Sentinel" },
+      { "label": "Runtime", "value": "Go 1.25+ / Docker" },
+      { "label": "Engine", "value": "LocalHarness" }
+    ],
+    "features": [
+      "Bolt Agent: Autonomous profiling, memory bottleneck detection, and algorithmic optimization",
+      "Sentinel Agent: Security audit, secret detection, and vulnerability remediation",
+      "Palette Agent: Design system alignment and frontend component UX refactoring",
+      "Runs natively via Go or inside isolated Docker workspaces"
+    ],
+    "cliCommand": "./jules-ai-agent --agent bolt --workspace /path/to/project --prompt 'Optimize performance'",
+    "architectureDetails": "Go agent architecture powered by github.com/divmora/localharness with automated Git branching and PR preparation."
+  },
+  {
+    "id": "code-reviewer-ai-agent",
+    "name": "Code Reviewer AI Agent",
+    "repoName": "code-reviewer-ai-agent",
+    "tagline": "Context-Aware AI Code Review CLI for GitLab, GitHub & Bitbucket",
+    "description": "Production-grade AI code review CLI built in Go and powered by LocalHarness. Analyzes PRs and diffs across GitLab (cloud & self-hosted), GitHub, and Bitbucket with AST scope slicing, quality scorecards, and 1-click committable suggestions.",
+    "category": "ai-agents",
+    "categoryLabel": "AI & Autonomous Agents",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/code-reviewer-ai-agent",
+    "stars": 16,
+    "forks": 3,
+    "badge": "Code Review",
+    "status": "active",
+    "metrics": [
+      { "label": "VCS Support", "value": "GitLab / GitHub / Bitbucket" },
+      { "label": "Analysis", "value": "AST Scope Slicing" },
+      { "label": "Suggestions", "value": "1-Click Committable" }
+    ],
+    "features": [
+      "Context-aware AST scope slicing extracting enclosing functions and classes",
+      "Strict anti-hallucination bounds limiting comments to modified diff lines",
+      "Automatic MR description updates with Quality, Security, and Maintainability scorecards",
+      "Self-hosted GitLab support with custom domains and internal SSL verification skip"
+    ],
+    "cliCommand": "go run . --url https://github.com/myorg/repo/pull/123 --token $GITHUB_TOKEN --post",
+    "architectureDetails": "Go binary with exponential backoff stale diff handlers, comment budgeting, secret scanning, and scoped score labeling."
+  },
+  {
+    "id": "aws-das-processor",
+    "name": "AWS DAS Processor",
+    "repoName": "aws-das-processor",
+    "tagline": "Automated Ingestion, Decryption & Filtration Engine for AWS Database Activity Streams",
+    "description": "High-performance AWS Lambda stream processor written in Go. Consumes Amazon Aurora and RDS Database Activity Streams (DAS) via S3/SQS fanout, performs in-line KMS envelope decryption, zlib decompression, and streams filtered audit records back to S3.",
+    "category": "cloud-infra",
+    "categoryLabel": "Cloud & Security",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/aws-das-processor",
+    "stars": 11,
+    "forks": 2,
+    "badge": "Database Security",
+    "status": "active",
+    "metrics": [
+      { "label": "Stream Source", "value": "SQS / S3 Fanout" },
+      { "label": "Decryption", "value": "AWS KMS Envelope" },
+      { "label": "Runtime", "value": "AWS Lambda / Go" }
+    ],
+    "features": [
+      "Automated Database Activity Streams consumption via S3/SQS event architecture",
+      "In-line cryptographic envelope decryption of sensitive SQL activity using AWS KMS",
+      "Normalized schema output and zlib payload decompression with minimal heap overhead",
+      "Configurable SQL statement filtering, user excludes, and CloudWatch metrics"
+    ],
+    "cliCommand": "go run . --s3-bucket=my-das-events --region=us-east-1",
+    "architectureDetails": "Go Lambda binary utilizing AWS SDK v2, concurrency-bounded workers, and least-privilege IAM policies."
+  },
+  {
+    "id": "cloudflare-smtp-relay",
+    "name": "Cloudflare SMTP Relay",
+    "repoName": "cloudflare-smtp-relay",
+    "tagline": "Modular SMTP Server Relaying via Cloudflare Email Routing API",
+    "description": "A robust, modular Node.js SMTP relay server designed to accept standard SMTP connections from legacy appliances, printers, and scripts, forwarding emails securely via Cloudflare Email Routing REST API.",
+    "category": "cloud-infra",
+    "categoryLabel": "Cloud & Security",
+    "language": "Node.js / JavaScript",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/cloudflare-smtp-relay",
+    "stars": 14,
+    "forks": 3,
+    "badge": "Relay Server",
+    "status": "stable",
+    "metrics": [
+      { "label": "Protocol", "value": "SMTP / ESMTP" },
+      { "label": "Forwarding", "value": "Cloudflare REST API" },
+      { "label": "Security", "value": "STARTTLS v1.3" }
+    ],
+    "features": [
+      "Standard SMTP server compatible with legacy appliances, servers, and scripts",
+      "Secure TLS negotiation and IP whitelist filtering",
+      "Reliable HTTP REST dispatch to Cloudflare Email API with retry backoff",
+      "Single-command Docker container deployment"
+    ],
+    "cliCommand": "node server.js --port=2525",
+    "architectureDetails": "Built on modular Node.js streams with connection pooling and REST client failover."
+  },
+  {
+    "id": "functionless-url-shortener",
+    "name": "Functionless URL Shortener",
+    "repoName": "functionless-url-shortener",
+    "tagline": "Zero-Compute High-Performance Cloud URL Redirection Architecture",
+    "description": "Architectural blueprint and Terraform/CloudFormation IaC for high-scale URL shortening that eliminates compute layers using native cloud CDN routing and edge key-value storage.",
+    "category": "developer-tools",
+    "categoryLabel": "Developer Tooling",
+    "language": "Terraform / HCL",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/functionless-url-shortener",
+    "stars": 12,
+    "forks": 2,
+    "badge": "Serverless Edge",
+    "status": "active",
+    "metrics": [
+      { "label": "Compute Cost", "value": "$0.00" },
+      { "label": "Edge TTFB", "value": "<8ms" },
+      { "label": "Scaling", "value": "Edge Native" }
+    ],
+    "features": [
+      "Zero compute container or Lambda execution on the redirection path",
+      "Direct CloudFront / Edge key-value redirection mapping",
+      "Sub-10ms global edge redirection response times",
+      "Fully automated Infrastructure as Code provisioning"
+    ],
+    "cliCommand": "terraform apply -var='domain=go.divmora.com'",
+    "architectureDetails": "Leverages edge cache rewrites and object metadata headers to bypass compute execution."
+  },
+  {
+    "id": "show-and-tell",
+    "name": "Show & Tell",
+    "repoName": "show-and-tell",
+    "tagline": "Interactive Architecture & Demo Presentation Platform for Engineering Teams",
+    "description": "A developer-focused presentation and interactive demo tool designed for engineering teams to share architecture decisions, live code walkthroughs, and system demos effortlessly.",
+    "category": "developer-tools",
+    "categoryLabel": "Developer Tooling",
+    "language": "TypeScript / React",
+    "license": "BSL-1.1",
+    "githubUrl": "https://github.com/divmora/show-and-tell",
+    "liveUrl": "https://divmora.github.io/show-and-tell/",
+    "stars": 15,
+    "forks": 3,
+    "badge": "Presentation",
+    "status": "active",
+    "metrics": [
+      { "label": "Format", "value": "Markdown / TSX" },
+      { "label": "Rendering", "value": "Interactive Slides" },
+      { "label": "Deployment", "value": "Static HTML" }
+    ],
+    "features": [
+      "Markdown-first slide decks with live interactive code blocks and diagram rendering",
+      "Built-in syntax highlighting and side-by-side architecture diffs",
+      "Zero configuration export to static HTML for GitHub Pages sharing",
+      "Presenter mode with presenter notes and timer support"
+    ],
+    "cliCommand": "npx @divmora/show-and-tell dev",
+    "architectureDetails": "Engineered with Vite and React, rendering AST-parsed Markdown slides with dynamic client-side evaluation."
+  },
+  {
+    "id": "localharness",
+    "name": "LocalHarness",
+    "repoName": "localharness",
+    "tagline": "High-Performance Agent Runtime Engine & Interactive TUI (lhctl)",
+    "description": "A Go binary engine that executes complete agentic loops: receives prompts via WebSocket, dispatches tools (file I/O, search, shell, Playwright browser), indexes AST codegraphs in DuckDB, and streams structured events to clients. Includes the lhctl terminal interface.",
+    "category": "ai-agents",
+    "categoryLabel": "AI & Autonomous Agents",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/localharness",
+    "stars": 31,
+    "forks": 7,
+    "badge": "Core Runtime",
+    "status": "core",
+    "metrics": [
+      { "label": "Wire Protocol", "value": "WS + Protobuf" },
+      { "label": "AST Engine", "value": "DuckDB" },
+      { "label": "Interface", "value": "lhctl TUI" }
+    ],
+    "features": [
+      "Pipe-based handshake (stdin/stdout) and Protobuf wire protocol",
+      "Interactive TUI (lhctl) with real-time streaming, diff approvals, and YOLO mode",
+      "DuckDB AST-level code graph search and blast radius analyzer",
+      "Dual execution: ephemeral subprocess or persistent background daemon"
+    ],
+    "cliCommand": "./bin/lhctl run --model=gpt-4o --yolo",
+    "architectureDetails": "Engineered in Go with WebSocket Protobuf transport, resilient backoff retry, and Playwright browser integration."
+  }
+]
