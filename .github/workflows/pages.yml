@@ -1,0 +1,15 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: divmora/.github/.github/workflows/pages-deploy.yml@main
+    with:
+      artifact-path: './dist'
+      build-command: 'pnpm run build'
+      package-manager: 'pnpm'
+      node-version: '24'
