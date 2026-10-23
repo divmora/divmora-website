@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="favBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="favNavy" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="128" height="128" rx="28" fill="#0F172A" />
+
+  <!-- D Outer Shape -->
+  <path
+    d="M24 24 H64 C86 24 100 38 100 64 C100 90 86 104 64 104 H24 V24 Z M42 42 V86 H62 C74 86 82 77 82 64 C82 51 74 42 62 42 H42 Z"
+    fill="url(#favBlue)"
+  />
+
+  <!-- Interlocking M Inner Angles -->
+  <path
+    d="M52 104 L78 48 L104 104 H90 L78 78 L66 104 H52 Z"
+    fill="#60A5FA"
+  />
+
+  <!-- Diamond Interlock Joint -->
+  <polygon points="64,18 76,30 64,42 52,30" fill="#93C5FD" />
+  <polygon points="64,86 76,98 64,110 52,98" fill="#1E3A8A" />
+</svg>
