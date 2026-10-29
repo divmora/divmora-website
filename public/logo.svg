@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Primary Cobalt Blue Gradient -->
+    <linearGradient id="dmGradPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+
+    <!-- Deep Navy Shadow Gradient -->
+    <linearGradient id="dmGradNavy" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="70%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <!-- Highlight Bevel Gradient -->
+    <linearGradient id="dmGradHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <!-- Dark Shade Bevel Gradient -->
+    <linearGradient id="dmGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#172554" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter for Vector Depth -->
+    <filter id="dmShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1E3A8A" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Container Rounded Background for App / Favicon Clarity (Optional subtle transparent base) -->
+  <rect width="512" height="512" rx="110" fill="#0F172A" />
+
+  <!-- Outer Interlocking Frame Geometry -->
+  <g filter="url(#dmShadow)">
+    
+    <!-- Top Left & Top Outer Border -->
+    <path
+      d="M64 64 H240 L216 104 H104 V408 H64 V64 Z"
+      fill="url(#dmGradHighlight)"
+    />
+
+    <!-- Top Right Corner & Right Outer Pillar of 'M' -->
+    <path
+      d="M272 64 H448 V448 H408 V104 H296 L272 64 Z"
+      fill="url(#dmGradPrimary)"
+    />
+
+    <!-- Bottom Outer Border -->
+    <path
+      d="M64 408 H216 L240 448 H64 V408 Z"
+      fill="url(#dmGradDark)"
+    />
+
+    <!-- Bottom Right Frame Segment -->
+    <path
+      d="M272 448 L296 408 H408 V448 H272 Z"
+      fill="url(#dmGradDark)"
+    />
+
+    <!-- THE 'D' COMPONENT -->
+    <!-- Left Main Stem of 'D' -->
+    <path
+      d="M104 104 H176 V408 H104 V104 Z"
+      fill="url(#dmGradPrimary)"
+    />
+
+    <!-- Outer Arch of 'D' -->
+    <path
+      d="M176 104 H260 C330 104 380 150 380 230 C380 280 350 325 300 345 L276 310 C310 295 336 265 336 230 C336 175 300 144 250 144 H176 V104 Z"
+      fill="url(#dmGradHighlight)"
+    />
+
+    <!-- Inner Loop Arch of 'D' -->
+    <path
+      d="M176 368 H260 C280 368 300 360 316 348 L296 312 C286 320 274 328 260 328 H176 V368 Z"
+      fill="url(#dmGradNavy)"
+    />
+
+    <!-- THE 'M' COMPONENT -->
+    <!-- Center Left Diagonal of 'M' (Interlocking through D) -->
+    <path
+      d="M240 144 L340 330 L310 370 L195 160 L240 144 Z"
+      fill="url(#dmGradPrimary)"
+    />
+
+    <!-- Center Right Diagonal of 'M' -->
+    <path
+      d="M340 330 L408 144 H360 L320 285 L295 240 L325 195 L340 330 Z"
+      fill="url(#dmGradHighlight)"
+    />
+
+    <!-- Right Vertical Stem of 'M' -->
+    <path
+      d="M368 144 H408 V408 H368 V144 Z"
+      fill="url(#dmGradNavy)"
+    />
+
+    <!-- Isometric Diamond Accent in Center Interlock -->
+    <path
+      d="M256 64 L300 110 L256 156 L212 110 Z"
+      fill="url(#dmGradHighlight)"
+    />
+    <path
+      d="M256 356 L300 402 L256 448 L212 402 Z"
+      fill="url(#dmGradNavy)"
+    />
+
+  </g>
+</svg>
