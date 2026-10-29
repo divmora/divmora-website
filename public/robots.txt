@@ -1,0 +1,6 @@
+# Allow crawling of all content by all web crawlers
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://divmora.com/sitemap.xml
