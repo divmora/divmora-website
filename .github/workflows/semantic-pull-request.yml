@@ -1,0 +1,15 @@
+name: Semantic PR Lint
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  pull-requests: read
+
+jobs:
+  validate:
+    uses: divmora/.github/.github/workflows/semantic-pr.yml@main
