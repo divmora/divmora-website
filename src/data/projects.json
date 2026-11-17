@@ -208,11 +208,11 @@
     "id": "functionless-url-shortener",
     "name": "Functionless URL Shortener",
     "repoName": "functionless-url-shortener",
-    "tagline": "Zero-Compute High-Performance Cloud URL Redirection Architecture",
-    "description": "Architectural blueprint and Terraform/CloudFormation IaC for high-scale URL shortening that eliminates compute layers using native cloud CDN routing and edge key-value storage.",
+    "tagline": "Lambda-Free URL Shortener Built on API Gateway, DynamoDB & CloudFront",
+    "description": "AWS SAM / CloudFormation stack for a URL shortener with no compute layer: API Gateway VTL mapping templates talk directly to DynamoDB, CloudFront caches public redirects at the edge, and management APIs are locked to your AWS Organization via IAM SigV4.",
     "category": "developer-tools",
     "categoryLabel": "Developer Tooling",
-    "language": "Terraform / HCL",
+    "language": "AWS SAM / CloudFormation",
     "license": "Apache-2.0",
     "githubUrl": "https://github.com/divmora/functionless-url-shortener",
     "stars": 12,
@@ -220,18 +220,19 @@
     "badge": "Serverless Edge",
     "status": "active",
     "metrics": [
-      { "label": "Compute Cost", "value": "$0.00" },
-      { "label": "Edge TTFB", "value": "<8ms" },
-      { "label": "Scaling", "value": "Edge Native" }
+      { "label": "Lambda Functions", "value": "0" },
+      { "label": "Data Store", "value": "DynamoDB + TTL" },
+      { "label": "Admin Auth", "value": "IAM SigV4 + Org" }
     ],
     "features": [
-      "Zero compute container or Lambda execution on the redirection path",
-      "Direct CloudFront / Edge key-value redirection mapping",
-      "Sub-10ms global edge redirection response times",
-      "Fully automated Infrastructure as Code provisioning"
+      "No Lambda or containers: API Gateway VTL integrates directly with DynamoDB",
+      "CloudFront-cached HTTP 301 redirects via /{linkId} and /?go={linkId}",
+      "Management API restricted to your AWS Organization (aws:PrincipalOrgID)",
+      "Automatic link expiry with DynamoDB TTL",
+      "CloudWatch alarms for API Gateway, DynamoDB and CloudFront routed to SNS"
     ],
-    "cliCommand": "terraform apply -var='domain=go.divmora.com'",
-    "architectureDetails": "Leverages edge cache rewrites and object metadata headers to bypass compute execution."
+    "cliCommand": "make deploy-guided",
+    "architectureDetails": "API Gateway REST resources use VTL mapping templates to call DynamoDB GetItem and conditional UpdateItem natively, with CloudFront in front for edge caching of redirects."
   },
   {
     "id": "show-and-tell",
