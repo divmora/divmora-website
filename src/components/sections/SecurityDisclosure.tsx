@@ -126,7 +126,7 @@ export const SecurityDisclosure: React.FC<SecurityDisclosureProps> = ({ onBackTo
               </span>
               <ul className="list-disc pl-4 space-y-1 text-xs text-slate-600">
                 <li>Divmora official website: <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">https://divmora.com</code></li>
-                <li>All open-source repositories hosted on <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">github.com/divmora/*</code> (including GitLab Fleet Governor, OwlFlow, Jules, Code Reviewer AI Agent, OTel AWS Log Processor)</li>
+                <li>All open-source repositories hosted on <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">github.com/divmora/*</code> (including GitLab Fleet Governor, OwlFlow, Jules, Code Review Bot, Code Review Console, OTel AWS Log Processor)</li>
                 <li>Published Go binaries, Docker containers, and serverless AWS Lambda deployment artifacts</li>
               </ul>
             </div>

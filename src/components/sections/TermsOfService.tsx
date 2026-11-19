@@ -148,10 +148,13 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onBackToHome }) 
           </p>
           <ul className="list-disc pl-5 space-y-2 text-slate-600">
             <li>
-              <strong className="text-slate-900">Apache License 2.0</strong>: Standard permissive licensing governing tools such as OwlFlow, Jules AI Agents, Code Reviewer AI Agent, and supporting SDKs.
+              <strong className="text-slate-900">Apache License 2.0</strong>: Standard permissive licensing governing tools such as OwlFlow, Jules AI Agents, Code Review Bot, and supporting SDKs.
             </li>
             <li>
               <strong className="text-slate-900">Business Source License 1.1 (BSL 1.1)</strong>: Applied to specialized enterprise governance engines such as GitLab Fleet Governor and OTel AWS Log Processor, granting full source visibility and free non-commercial and internal testing rights.
+            </li>
+            <li>
+              <strong className="text-slate-900">Elastic License 2.0 (ELv2)</strong>: Applied to products with a free core and paid features unlocked by a Divmora license key, such as Code Review Console. The free core may be used in any environment, including production; it may not be offered to others as a hosted service, and the license key functionality may not be circumvented.
             </li>
           </ul>
           <p>
