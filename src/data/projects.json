@@ -118,33 +118,66 @@
     "architectureDetails": "Go agent architecture powered by github.com/divmora/localharness with automated Git branching and PR preparation."
   },
   {
-    "id": "code-reviewer-ai-agent",
-    "name": "Code Reviewer AI Agent",
-    "repoName": "code-reviewer-ai-agent",
-    "tagline": "Context-Aware AI Code Review CLI for GitLab, GitHub & Bitbucket",
-    "description": "Production-grade AI code review CLI built in Go and powered by LocalHarness. Analyzes PRs and diffs across GitLab (cloud & self-hosted), GitHub, and Bitbucket with AST scope slicing, quality scorecards, and 1-click committable suggestions.",
+    "id": "code-review-bot",
+    "name": "Code Review Bot",
+    "repoName": "code-review-bot",
+    "tagline": "AI Code Review for GitHub, GitLab & Bitbucket with Any LLM",
+    "description": "Open-source AI code review CLI in Go. Reviews pull and merge requests on GitHub, GitLab and Bitbucket Cloud with any LLM provider (OpenAI, Anthropic, Gemini, AWS Bedrock, Ollama and more), from a GitHub Action, GitLab CI job, Bitbucket Pipelines step or the command line.",
     "category": "ai-agents",
     "categoryLabel": "AI & Autonomous Agents",
     "language": "Go",
     "license": "Apache-2.0",
-    "githubUrl": "https://github.com/divmora/code-reviewer-ai-agent",
-    "stars": 16,
-    "forks": 3,
+    "githubUrl": "https://github.com/divmora/code-review-bot",
+    "liveUrl": "https://divmora.github.io/code-review-bot/",
+    "stars": 0,
+    "forks": 0,
     "badge": "Code Review",
     "status": "active",
     "metrics": [
-      { "label": "VCS Support", "value": "GitLab / GitHub / Bitbucket" },
-      { "label": "Analysis", "value": "AST Scope Slicing" },
-      { "label": "Suggestions", "value": "1-Click Committable" }
+      { "label": "VCS Support", "value": "GitHub / GitLab / Bitbucket" },
+      { "label": "Models", "value": "Any LLM Provider" },
+      { "label": "Runs In", "value": "CI/CD & CLI" }
     ],
     "features": [
-      "Context-aware AST scope slicing extracting enclosing functions and classes",
-      "Strict anti-hallucination bounds limiting comments to modified diff lines",
-      "Automatic MR description updates with Quality, Security, and Maintainability scorecards",
-      "Self-hosted GitLab support with custom domains and internal SSL verification skip"
+      "Inline comments with severity and one-click committable suggestions",
+      "Second-pass verification of findings, optionally by a model from another provider",
+      "Incremental reviews that never repeat issues already on the PR",
+      "Quality, Security and Maintainability scores with optional PR labels and commit status",
+      "Built-in secret scanner and guardrails that keep comments on changed lines only"
     ],
-    "cliCommand": "go run . --url https://github.com/myorg/repo/pull/123 --token $GITHUB_TOKEN --post",
-    "architectureDetails": "Go binary with exponential backoff stale diff handlers, comment budgeting, secret scanning, and scoped score labeling."
+    "cliCommand": "codereview review https://github.com/org/repo/pull/123 --post",
+    "architectureDetails": "Single Go binary with provider retries and fallback models, token-budgeted parallel batches for large PRs, and a stable JSON output contract."
+  },
+  {
+    "id": "code-review-console",
+    "name": "Code Review Console",
+    "repoName": "code-review-console",
+    "tagline": "Self-Hosted Control Plane for AI Code Review",
+    "description": "Runs Code Review Bot as a service across every repository: GitHub, GitLab and Bitbucket webhooks, a review queue, local, Docker and Kubernetes executors, and a React admin panel with OIDC sign-in. Free core; paid features unlocked by a Divmora license key.",
+    "category": "ai-agents",
+    "categoryLabel": "AI & Autonomous Agents",
+    "language": "Go",
+    "license": "Elastic-2.0",
+    "githubUrl": "https://github.com/divmora/code-review-console",
+    "liveUrl": "https://divmora.github.io/code-review-console/",
+    "stars": 1,
+    "forks": 0,
+    "badge": "Code Review Platform",
+    "status": "core",
+    "metrics": [
+      { "label": "Executors", "value": "Local / Docker / K8s" },
+      { "label": "Webhooks", "value": "GitHub / GitLab / Bitbucket" },
+      { "label": "Licensing", "value": "Free Core + License Key" }
+    ],
+    "features": [
+      "Signed webhooks from GitHub, GitLab (system, group and project hooks) and Bitbucket",
+      "Admin panel to enable repositories, set review settings and browse every review",
+      "Reviews isolated as a process, a locked-down container or a Kubernetes Job",
+      "Group and pattern rules, team learnings, token budgets and metrics (licensed)",
+      "License keys verified offline; the console never calls home"
+    ],
+    "cliCommand": "docker compose up -d --build",
+    "architectureDetails": "Go server with PostgreSQL, a per-PR review queue, an executor contract around the codereview CLI, and an embedded React admin panel."
   },
   {
     "id": "aws-das-processor",
