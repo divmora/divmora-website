@@ -195,7 +195,7 @@
     "category": "cloud-infra",
     "categoryLabel": "Cloud & Security",
     "language": "Go",
-    "license": "Apache-2.0",
+    "license": "BSL-1.1",
     "githubUrl": "https://github.com/divmora/aws-das-processor",
     "liveUrl": "https://divmora.github.io/aws-das-processor/",
     "stars": 11,
