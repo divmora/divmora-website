@@ -41,6 +41,7 @@
     "language": "Go",
     "license": "Apache-2.0",
     "githubUrl": "https://github.com/divmora/owlflow",
+    "liveUrl": "https://divmora.github.io/owlflow/",
     "stars": 24,
     "forks": 5,
     "badge": "Core Engine",
@@ -57,7 +58,8 @@
       "Resilient step retry policies and distributed state persistence"
     ],
     "cliCommand": "owlflow start --config=./workflows.yaml",
-    "architectureDetails": "Engineered in Go with concurrent worker pools, zero-alloc state machines, and embedded SQLite/DuckDB workflow execution logs."
+    "architectureDetails": "Engineered in Go with concurrent worker pools, zero-alloc state machines, and embedded SQLite/DuckDB workflow execution logs.",
+    "commercialSupport": true
   },
   {
     "id": "otel-aws-log-processor",
@@ -70,6 +72,7 @@
     "language": "Go",
     "license": "BSL-1.1",
     "githubUrl": "https://github.com/divmora/otel-aws-log-processor",
+    "liveUrl": "https://divmora.github.io/otel-aws-log-processor/",
     "stars": 19,
     "forks": 3,
     "badge": "Telemetry",
@@ -146,7 +149,11 @@
       "Built-in secret scanner and guardrails that keep comments on changed lines only"
     ],
     "cliCommand": "codereview review https://github.com/org/repo/pull/123 --post",
-    "architectureDetails": "Single Go binary with provider retries and fallback models, token-budgeted parallel batches for large PRs, and a stable JSON output contract."
+    "architectureDetails": "Single Go binary with provider retries and fallback models, token-budgeted parallel batches for large PRs, and a stable JSON output contract.",
+    "related": {
+      "id": "code-review-console",
+      "note": "Run it for every repository, with a queue, admin panel and Docker or Kubernetes executors, in Code Review Console."
+    }
   },
   {
     "id": "code-review-console",
@@ -190,6 +197,7 @@
     "language": "Go",
     "license": "Apache-2.0",
     "githubUrl": "https://github.com/divmora/aws-das-processor",
+    "liveUrl": "https://divmora.github.io/aws-das-processor/",
     "stars": 11,
     "forks": 2,
     "badge": "Database Security",
@@ -207,35 +215,6 @@
     ],
     "cliCommand": "go run . --s3-bucket=my-das-events --region=us-east-1",
     "architectureDetails": "Go Lambda binary utilizing AWS SDK v2, concurrency-bounded workers, and least-privilege IAM policies."
-  },
-  {
-    "id": "cloudflare-smtp-relay",
-    "name": "Cloudflare SMTP Relay",
-    "repoName": "cloudflare-smtp-relay",
-    "tagline": "Modular SMTP Server Relaying via Cloudflare Email Routing API",
-    "description": "A robust, modular Node.js SMTP relay server designed to accept standard SMTP connections from legacy appliances, printers, and scripts, forwarding emails securely via Cloudflare Email Routing REST API.",
-    "category": "cloud-infra",
-    "categoryLabel": "Cloud & Security",
-    "language": "Node.js / JavaScript",
-    "license": "Apache-2.0",
-    "githubUrl": "https://github.com/divmora/cloudflare-smtp-relay",
-    "stars": 14,
-    "forks": 3,
-    "badge": "Relay Server",
-    "status": "stable",
-    "metrics": [
-      { "label": "Protocol", "value": "SMTP / ESMTP" },
-      { "label": "Forwarding", "value": "Cloudflare REST API" },
-      { "label": "Security", "value": "STARTTLS v1.3" }
-    ],
-    "features": [
-      "Standard SMTP server compatible with legacy appliances, servers, and scripts",
-      "Secure TLS negotiation and IP whitelist filtering",
-      "Reliable HTTP REST dispatch to Cloudflare Email API with retry backoff",
-      "Single-command Docker container deployment"
-    ],
-    "cliCommand": "node server.js --port=2525",
-    "architectureDetails": "Built on modular Node.js streams with connection pooling and REST client failover."
   },
   {
     "id": "functionless-url-shortener",
@@ -265,37 +244,41 @@
       "CloudWatch alarms for API Gateway, DynamoDB and CloudFront routed to SNS"
     ],
     "cliCommand": "make deploy-guided",
-    "architectureDetails": "API Gateway REST resources use VTL mapping templates to call DynamoDB GetItem and conditional UpdateItem natively, with CloudFront in front for edge caching of redirects."
+    "architectureDetails": "API Gateway REST resources use VTL mapping templates to call DynamoDB GetItem and conditional UpdateItem natively, with CloudFront in front for edge caching of redirects.",
+    "commercialSupport": true
   },
   {
     "id": "show-and-tell",
     "name": "Show & Tell",
     "repoName": "show-and-tell",
-    "tagline": "Interactive Architecture & Demo Presentation Platform for Engineering Teams",
-    "description": "A developer-focused presentation and interactive demo tool designed for engineering teams to share architecture decisions, live code walkthroughs, and system demos effortlessly.",
+    "tagline": "Standalone JavaScript Screen Recording SDK",
+    "description": "A zero-server-dependency screen recording SDK for the browser. Records screens, windows or tabs with mixed system and microphone audio, or replays DOM sessions without permission prompts, with PII masking, duration limits and reload-safe buffering. Drop in one script tag and call ShowAndTell.startRecording().",
     "category": "developer-tools",
     "categoryLabel": "Developer Tooling",
-    "language": "TypeScript / React",
-    "license": "BSL-1.1",
+    "language": "TypeScript",
+    "license": "Apache-2.0",
     "githubUrl": "https://github.com/divmora/show-and-tell",
     "liveUrl": "https://divmora.github.io/show-and-tell/",
     "stars": 15,
     "forks": 3,
-    "badge": "Presentation",
+    "badge": "Screen Recording",
     "status": "active",
     "metrics": [
-      { "label": "Format", "value": "Markdown / TSX" },
-      { "label": "Rendering", "value": "Interactive Slides" },
-      { "label": "Deployment", "value": "Static HTML" }
+      { "label": "Runs In", "value": "Browser only" },
+      { "label": "Modes", "value": "Pixel / DOM replay" },
+      { "label": "Export", "value": "WebM / MP4 / HTML" }
     ],
     "features": [
-      "Markdown-first slide decks with live interactive code blocks and diagram rendering",
-      "Built-in syntax highlighting and side-by-side architecture diffs",
-      "Zero configuration export to static HTML for GitHub Pages sharing",
-      "Presenter mode with presenter notes and timer support"
+      "Pixel mode: screen, window or tab capture with system and microphone audio mixing",
+      "DOM mode: in-app session replay with no browser permission dialog, exported as offline HTML",
+      "PII masking by scoped CSS selectors for sensitive fields",
+      "Maximum duration limits with pause-aware timing and countdown alerts",
+      "IndexedDB buffering recovers recordings after a reload or navigation",
+      "Shadow-DOM toolbar, preview player and client-side trimming"
     ],
-    "cliCommand": "npx @divmora/show-and-tell dev",
-    "architectureDetails": "Engineered with Vite and React, rendering AST-parsed Markdown slides with dynamic client-side evaluation."
+    "cliCommand": "<script src=\"dist/show-and-tell.min.js\"></script>",
+    "architectureDetails": "TypeScript SDK bundled with Vite into a single script. Uses MediaRecorder and the Web Audio API for pixel capture, a DOM mutation recorder for replay mode, and IndexedDB timeslices for crash and reload recovery. No backend is required.",
+    "commercialSupport": true
   },
   {
     "id": "localharness",

@@ -102,7 +102,7 @@ export const AboutDivmora: React.FC = () => {
         <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-700">
           <div className="flex items-center gap-2">
             <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
-            <span><strong className="font-semibold text-slate-900">Licensing:</strong> Apache 2.0 & BSL 1.1 fair-code</span>
+            <span><strong className="font-semibold text-slate-900">Licensing:</strong> Apache 2.0, Elastic License 2.0 & BSL 1.1</span>
           </div>
 
           <div className="flex items-center gap-2">

@@ -47,8 +47,8 @@ export const SITE_CONFIG = {
     ],
     principles: [
       {
-        title: 'Open Source by Default',
-        description: 'Every tool we develop is released under open-source and fair-code licenses (Apache 2.0 and BSL 1.1). We believe the best infrastructure is transparent, inspectable, and accessible.',
+        title: 'Source You Can Read',
+        description: 'Every tool we develop is published with its source: open source under Apache 2.0, or source-available under the Elastic License 2.0 or BSL 1.1 where it is a paid product. We believe the best infrastructure is transparent, inspectable, and accessible.',
       },
       {
         title: 'Single-Binary Simplicity',

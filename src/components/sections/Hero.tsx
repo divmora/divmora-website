@@ -86,8 +86,8 @@ export const Hero: React.FC = () => {
               <ShieldCheck size={14} />
               <span>LICENSE</span>
             </div>
-            <div className="text-sm font-bold text-slate-900">Apache 2.0 & BSL</div>
-            <p className="text-xs text-slate-500">Open source & fair-code</p>
+            <div className="text-sm font-bold text-slate-900">Apache 2.0, ELv2 & BSL</div>
+            <p className="text-xs text-slate-500">Open source & source-available</p>
           </div>
 
           <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm space-y-1">
