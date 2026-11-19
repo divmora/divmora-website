@@ -12,28 +12,62 @@ import {
   Activity,
   Cpu,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Globe,
+  Scale,
+  Mail
 } from 'lucide-react';
-import { PRODUCTS_DATA, PRODUCT_CATEGORIES, Product } from '../../data/products';
+import {
+  PRODUCTS_DATA,
+  PRODUCT_CATEGORIES,
+  LICENSE_MODELS,
+  LICENSING_EMAIL,
+  LICENSING_POLICY_URL,
+  LicenseModel,
+  Product,
+  getLicenseModel,
+  getLicenseModelInfo,
+  getLicenseNote
+} from '../../data/products';
 import { Badge } from '../ui/Badge';
 import { Modal } from '../ui/Modal';
 import { GithubIcon } from '../ui/GithubIcon';
 import { GlowingButton } from '../ui/GlowingButton';
 
+const LICENSE_PILL_CLASSES: Record<LicenseModel, string> = {
+  'open-source': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'free-core': 'bg-blue-50 text-blue-700 border-blue-200',
+  commercial: 'bg-amber-50 text-amber-800 border-amber-200',
+};
+
+const LicensePill: React.FC<{ product: Product }> = ({ product }) => {
+  const info = getLicenseModelInfo(product);
+  return (
+    <span
+      className={`px-2 py-0.5 rounded-full text-[11px] font-semibold border whitespace-nowrap ${LICENSE_PILL_CLASSES[info.id]}`}
+      title={`${info.label} (${info.licenseName}): ${info.summary}`}
+    >
+      {info.shortLabel}
+    </span>
+  );
+};
+
 export const ProjectsCatalog: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeLicense, setActiveLicense] = useState<'all' | LicenseModel>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const filteredProducts = PRODUCTS_DATA.filter((product) => {
     const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+    const matchesLicense = activeLicense === 'all' || getLicenseModel(product) === activeLicense;
     const matchesSearch =
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.language.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.tagline.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesLicense && matchesSearch;
   });
 
   const handleCopyClone = (product: Product, e: React.MouseEvent) => {
@@ -60,7 +94,7 @@ export const ProjectsCatalog: React.FC = () => {
   };
 
   // When browsing all with no search, spotlight the flagship product (GitLab Fleet Governor)
-  const isDefaultView = activeCategory === 'all' && !searchQuery.trim();
+  const isDefaultView = activeCategory === 'all' && activeLicense === 'all' && !searchQuery.trim();
   const spotlightProduct = isDefaultView
     ? (PRODUCTS_DATA.find((p) => p.id === 'gitlab-fleet-governor') || PRODUCTS_DATA[0])
     : null;
@@ -80,17 +114,17 @@ export const ProjectsCatalog: React.FC = () => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 font-sans">
-              Featured Open-Source Projects
+              Products & Open-Source Projects
             </h2>
 
             <p className="text-slate-600 text-base font-normal">
-              High-performance developer tools, autonomous agent runtimes, and cloud systems engineered by Divmora.
+              Developer tools, agent runtimes and cloud systems engineered by Divmora. Every card shows what is free and what needs a licence.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-xs font-mono font-medium text-slate-500">
-              {filteredProducts.length} featured systems
+              {filteredProducts.length} {filteredProducts.length === 1 ? 'project' : 'projects'}
             </span>
             <a
               href="https://github.com/divmora"
@@ -101,6 +135,52 @@ export const ProjectsCatalog: React.FC = () => {
               <span>Explore GitHub organization</span>
               <ArrowRight size={13} />
             </a>
+          </div>
+        </div>
+
+        {/* How licensing works: one card per model, each also filters the catalog */}
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+              <Scale size={15} className="text-blue-600" />
+              <span>How licensing works</span>
+            </h3>
+            <a
+              href={LICENSING_POLICY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1"
+            >
+              <span>Read the licensing policy</span>
+              <ArrowRight size={13} />
+            </a>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {LICENSE_MODELS.map((model) => {
+              const isActive = activeLicense === model.id;
+              const count = PRODUCTS_DATA.filter((p) => getLicenseModel(p) === model.id).length;
+              return (
+                <button
+                  key={model.id}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setActiveLicense(isActive ? 'all' : model.id)}
+                  className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-slate-900 border-slate-900 text-white shadow-sm'
+                      : 'bg-white border-slate-200 hover:border-slate-300'
+                  }`}
+                >
+                  <div className={`text-sm font-bold ${isActive ? 'text-white' : 'text-slate-900'}`}>{model.label}</div>
+                  <div className={`text-[11px] font-mono ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>
+                    {model.licenseName} · {count} {count === 1 ? 'project' : 'projects'}
+                  </div>
+                  <p className={`mt-1.5 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-600'}`}>
+                    {model.summary}
+                  </p>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -191,9 +271,7 @@ export const ProjectsCatalog: React.FC = () => {
                   <span className="px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-slate-100 text-slate-700 border border-slate-200">
                     {spotlightProduct.language}
                   </span>
-                  <span className="text-xs font-mono font-semibold text-slate-500">
-                    {spotlightProduct.license}
-                  </span>
+                  <LicensePill product={spotlightProduct} />
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -205,8 +283,8 @@ export const ProjectsCatalog: React.FC = () => {
                       onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer mr-1"
                     >
-                      <ExternalLink size={13} />
-                      <span>Live Studio</span>
+                      <Globe size={13} />
+                      <span>Website</span>
                     </a>
                   )}
 
@@ -279,6 +357,8 @@ export const ProjectsCatalog: React.FC = () => {
                     </span>
                   ))}
                 </div>
+
+                <p className="text-[11px] font-medium text-slate-500">{getLicenseNote(product)}</p>
               </div>
 
               {/* Card Bottom Actions with Clear Affordance */}
@@ -287,9 +367,7 @@ export const ProjectsCatalog: React.FC = () => {
                   <span className="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-slate-100 text-slate-700 border border-slate-200">
                     {product.language}
                   </span>
-                  <span className="text-[11px] font-mono text-slate-400">
-                    {product.license}
-                  </span>
+                  <LicensePill product={product} />
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -297,6 +375,19 @@ export const ProjectsCatalog: React.FC = () => {
                     <span>Details</span>
                     <span>→</span>
                   </span>
+
+                  {product.liveUrl && (
+                    <a
+                      href={product.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+                      title={`${product.name} website`}
+                    >
+                      <Globe size={13} />
+                    </a>
+                  )}
 
                   <button
                     onClick={(e) => handleCopyClone(product, e)}
@@ -325,11 +416,12 @@ export const ProjectsCatalog: React.FC = () => {
         {/* Empty Fallback */}
         {filteredProducts.length === 0 && (
           <div className="p-12 text-center rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-            <div className="text-slate-700 font-medium text-sm">No repositories found matching &ldquo;{searchQuery}&rdquo;</div>
+            <div className="text-slate-700 font-medium text-sm">No projects match these filters{searchQuery.trim() ? <> and &ldquo;{searchQuery}&rdquo;</> : null}</div>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setActiveCategory('all');
+                setActiveLicense('all');
               }}
               className="text-xs font-semibold text-blue-600 hover:underline cursor-pointer"
             >
@@ -365,6 +457,47 @@ export const ProjectsCatalog: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {(() => {
+              const info = getLicenseModelInfo(selectedProduct);
+              const related = selectedProduct.related
+                ? PRODUCTS_DATA.find((p) => p.id === selectedProduct.related?.id)
+                : undefined;
+              return (
+                <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-mono uppercase font-bold text-slate-700 flex items-center gap-1.5">
+                      <Scale size={14} className="text-blue-600" />
+                      <span>Licensing</span>
+                    </span>
+                    <LicensePill product={selectedProduct} />
+                    <span className="text-[11px] font-mono text-slate-400">{info.licenseName}</span>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed">{info.summary}</p>
+                  {info.id === 'open-source' && selectedProduct.commercialSupport && (
+                    <p className="text-sm text-slate-700">Paid setup and support are available.</p>
+                  )}
+                  {(info.id !== 'open-source' || selectedProduct.commercialSupport) && (
+                    <a
+                      href={`mailto:${LICENSING_EMAIL}?subject=${encodeURIComponent(selectedProduct.name)}`}
+                      className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1"
+                    >
+                      <Mail size={13} />
+                      <span>Contact {LICENSING_EMAIL}</span>
+                    </a>
+                  )}
+                  {related && selectedProduct.related && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProduct(related)}
+                      className="block text-left text-xs font-semibold text-blue-600 hover:underline cursor-pointer"
+                    >
+                      {selectedProduct.related.note} →
+                    </button>
+                  )}
+                </div>
+              );
+            })()}
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
               <div className="text-xs font-mono uppercase font-bold text-slate-700 flex items-center gap-1.5">
@@ -412,9 +545,9 @@ export const ProjectsCatalog: React.FC = () => {
                     href={selectedProduct.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    icon={<ExternalLink size={14} />}
+                    icon={<Globe size={14} />}
                   >
-                    Launch Live Studio
+                    Visit website
                   </GlowingButton>
                 )}
 
