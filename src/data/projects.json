@@ -156,6 +156,37 @@
     }
   },
   {
+    "id": "zenith",
+    "name": "Zenith",
+    "repoName": "zenith",
+    "tagline": "Autonomous Coding Agent: Task In, Tested Branch and Pull Request Out",
+    "description": "Open-source autonomous coding agent in Go with its own harness. Give it a task and a repository: it plans the change, waits for approval if you want, edits the code, runs the project's own tests and fixes what they catch, then opens a pull request on GitHub or GitLab. Works with any LLM provider (OpenAI, Anthropic, Gemini, AWS Bedrock, Ollama and more).",
+    "category": "ai-agents",
+    "categoryLabel": "AI & Autonomous Agents",
+    "language": "Go",
+    "license": "Apache-2.0",
+    "githubUrl": "https://github.com/divmora/zenith",
+    "liveUrl": "https://divmora.github.io/zenith/",
+    "stars": 0,
+    "forks": 0,
+    "badge": "Coding Agent",
+    "status": "active",
+    "metrics": [
+      { "label": "Models", "value": "Any LLM Provider" },
+      { "label": "Publishes To", "value": "GitHub / GitLab" },
+      { "label": "Runs In", "value": "CLI / Docker / CI" }
+    ],
+    "features": [
+      "Optional read-only planning phase you approve, refine with feedback, or resume in a fresh sandbox",
+      "Runs the project's own checks before and after, and sends new failures back to the agent to fix",
+      "Works in a separate git worktree so your checkout is never touched",
+      "Built-in personas for security, performance, UX, maintainability, tests and docs",
+      "Agent commands never see API keys or git tokens; pushing is a separate step without a model"
+    ],
+    "cliCommand": "zenith run --worktree --task 'Fix the pagination off-by-one and add a test'",
+    "architectureDetails": "Single Go binary with its own agent harness: tool calling and streaming across providers, step, token and time budgets, context compaction, a versioned JSON event and result contract, and a container image with common toolchains."
+  },
+  {
     "id": "code-review-console",
     "name": "Code Review Console",
     "repoName": "code-review-console",
