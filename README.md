@@ -12,7 +12,7 @@ Official web portal and open-source project showcase for **DIVMORA Technologies*
 ## ⚡ Core Highlights & Capabilities
 
 - **Lightweight & High-Performance**: Minimal, typography-focused developer aesthetics with sub-second load times and zero runtime bloat.
-- **Divmora Software Fleet Catalog**: Interactive and searchable showcase of Divmora open-source platforms across autonomous agent runtimes (`localharness`, `jules-ai-agent`), AI code review (`code-review-bot`), fleet governance (`gitlab-fleet-governor`), and telemetry lakehouses.
+- **Divmora Software Fleet Catalog**: Interactive and searchable showcase of Divmora open-source platforms across autonomous agent runtimes (`localharness`, `jules-ai-agent`), AI code review (`code-review-bot`), autonomous coding (`zenith`), fleet governance (`gitlab-fleet-governor`), and telemetry lakehouses.
 - **Company Coordinates & Verification**: Transparent corporate details, headquarters location, tax identifiers, and official communication channels.
 - **Serverless GitHub Pages Deployment**: Fully automated static bundling and deployment powered by reusable GitHub Actions workflows.
 
